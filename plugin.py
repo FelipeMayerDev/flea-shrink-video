@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Compress selected videos with ffmpeg, picking format, resolution, frame rate and quality.
 
 Flea gives a request 30 seconds, caps the plugin at 512 MiB and kills its process group when idle,
