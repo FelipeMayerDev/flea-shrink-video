@@ -1,27 +1,28 @@
-# Flea Video Compressor
+# Flea Compress Media
 
-A [Flea](https://github.com/thisisgm/flea) plugin that adds ffmpeg compression presets to the
-right-click menu of video files.
+A [Flea](https://github.com/thisisgm/flea) plugin that adds **Compress Media…** to the right-click
+menu of video files. Choosing it opens Omarchy's menu to pick, in order:
 
-| Menu row | What it does |
+| Step | Options |
 | --- | --- |
-| Compress: Keep FPS | Same resolution and frame rate, H.264 CRF 28 |
-| Compress: Lower Quality | Same resolution and frame rate, H.264 CRF 33 |
-| Compress: 30 FPS | Caps the frame rate at 30, CRF 28 |
-| Compress: 720p, 30 FPS | Scales down to 720p (never up), caps at 30 FPS, CRF 28 |
-| Compress: 480p, 24 FPS | Scales down to 480p, caps at 24 FPS, CRF 32 |
+| Format | MP4 H.264 (plays everywhere), MP4 H.265 (smaller), WebM VP9 (web), GIF (silent loop) |
+| Resolution | Original, 1080p, 720p, 480p, 360p (never upscales) |
+| Frame rate | Original, 60, 30, 24, 15 (GIF: 15, 10; never raises the source rate) |
+| Quality | High, Medium, Low (skipped for GIF) |
 
-The output is an MP4 (H.264 + AAC 128k) written next to the original as `<name>-<preset>.mp4`.
-The original is never touched, and an existing output is never overwritten.
+Escape at any step cancels. The output is written next to the original as
+`<name>-<resolution>-<fps>fps-<quality>.<ext>`. The original is never touched, and an existing
+output is never overwritten.
 
 Encoding runs in the background as a transient systemd user unit, so a long video is not cut by
-Flea's 30-second plugin request limit. A notification shows the size before and after when it
-finishes. Several selected videos are encoded one after another.
+Flea's 30-second plugin request limit. Notifications show when it starts and the size before and
+after when it finishes. Several selected videos are encoded one after another with the same choices.
 
 ## Requirements
 
 - Flea 0.4.0 or newer
-- `ffmpeg` with `libx264`, `systemd-run`, `notify-send`
+- Omarchy (`omarchy-menu-select`)
+- `ffmpeg` with `libx264`, `libx265`, `libvpx-vp9`; `systemd-run`, `notify-send`
 - Python 3
 
 ## Install
@@ -41,10 +42,11 @@ Update with `flea plugin update felipemayerdev.video-compressor`.
 flea plugin remove felipemayerdev.video-compressor
 ```
 
-## Tweaking presets
+## Tweaking
 
-The presets live in the `PRESETS` table at the top of `plugin.py`: CRF, extra ffmpeg video
-filters and maximum frame rate. Lower CRF means better quality and a bigger file.
+The formats, resolutions, frame rates and quality-to-CRF mapping are the tables at the top of
+`plugin.py`. Lower CRF means better quality and a bigger file. `./test.sh` encodes a generated clip
+with every format and checks the outputs.
 
 ## License
 

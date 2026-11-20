@@ -1,24 +1,17 @@
 {
   "schemaVersion": 1,
   "id": "felipemayerdev.video-compressor",
-  "name": "Video Compressor",
-  "version": "0.1.0",
+  "name": "Compress Media",
+  "version": "0.2.0",
   "author": "Felipe Mayer",
   "license": "MIT",
-  "description": "Shrink videos with ffmpeg presets. Encodes in the background and notifies when done.",
+  "description": "Compress videos with ffmpeg: pick format, resolution, frame rate and quality. Encodes in the background and notifies when done.",
   "kinds": ["menu-action"],
   "menuActions": [
-    {"id": "balanced", "label": "Compress: Keep FPS", "glyph": "zap",
-     "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}},
-    {"id": "small", "label": "Compress: Lower Quality", "glyph": "zap",
-     "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}},
-    {"id": "fps30", "label": "Compress: 30 FPS", "glyph": "zap",
-     "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}},
-    {"id": "hd720", "label": "Compress: 720p, 30 FPS", "glyph": "zap",
-     "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}},
-    {"id": "tiny", "label": "Compress: 480p, 24 FPS", "glyph": "zap",
+    {"id": "compress", "label": "Compress Media…", "glyph": "play",
      "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}}
   ],
-  "access": ["selection", "notify", "exec:ffmpeg", "exec:systemd-run"],
+  "mark": "mark.svg",
+  "access": ["selection", "notify", "exec:ffmpeg", "exec:systemd-run", "exec:omarchy-menu-select"],
   "entryPoints": {"run": "plugin.py"}
 }
