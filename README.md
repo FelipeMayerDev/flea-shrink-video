@@ -1,6 +1,6 @@
-# Flea Compress Media
+# Flea Shrink Video
 
-A [Flea](https://github.com/thisisgm/flea) plugin that adds **Compress Media…** to the right-click
+A [Flea](https://github.com/thisisgm/flea) plugin that adds **Shrink Video…** to the right-click
 menu of video files. Choosing it opens Omarchy's menu to pick, in order:
 
 | Step | Options |
@@ -28,18 +28,18 @@ after when it finishes. Several selected videos are encoded one after another wi
 ## Install
 
 ```sh
-flea plugin add https://github.com/FelipeMayerDev/flea-video-compressor.git
-flea plugin enable felipemayerdev.video-compressor
+flea plugin add https://github.com/FelipeMayerDev/flea-shrink-video.git
+flea plugin enable felipemayerdev.shrink-video
 ```
 
 Restart Flea if an already open window does not show the new rows.
 
-Update with `flea plugin update felipemayerdev.video-compressor`.
+Update with `flea plugin update felipemayerdev.shrink-video`.
 
 ## Uninstall
 
 ```sh
-flea plugin remove felipemayerdev.video-compressor
+flea plugin remove felipemayerdev.shrink-video
 ```
 
 ## Tweaking

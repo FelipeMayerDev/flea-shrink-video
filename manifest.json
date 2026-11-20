@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "felipemayerdev.video-compressor",
-  "name": "Compress Media",
-  "version": "0.2.1",
+  "id": "felipemayerdev.shrink-video",
+  "name": "Shrink Video",
+  "version": "0.3.0",
   "author": "Felipe Mayer",
   "license": "MIT",
-  "description": "Compress videos with ffmpeg: pick format, resolution, frame rate and quality. Encodes in the background and notifies when done.",
+  "description": "Shrink videos with ffmpeg: pick format, resolution, frame rate and quality. Encodes in the background and notifies when done.",
   "kinds": ["menu-action"],
   "menuActions": [
-    {"id": "compress", "label": "Compress Media…", "glyph": "play",
+    {"id": "shrink", "label": "Shrink Video…", "glyph": "play",
      "when": {"minItems": 1, "maxItems": 64, "folders": false, "mime": ["video/*"]}}
   ],
   "mark": "mark.svg",

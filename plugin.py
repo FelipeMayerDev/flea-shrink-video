@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Compress selected videos with ffmpeg, picking format, resolution, frame rate and quality.
+"""Shrink selected videos with ffmpeg, picking format, resolution, frame rate and quality.
 
 Flea gives a request 30 seconds, caps the plugin at 512 MiB and kills its process group when idle,
 so the pickers and the encode run as a transient systemd user unit (`plugin.py encode <paths...>`).
@@ -85,15 +85,15 @@ def encode(paths):
     for src in paths:
         dst = output_for(src, choice)
         name = os.path.basename(src)
-        notify("Compressing media", f"{name} → {os.path.basename(dst)}")
+        notify("Shrinking video", f"{name} → {os.path.basename(dst)}")
         if subprocess.run(ffmpeg_args(src, dst, choice), check=False).returncode == 0:
             before, after = os.path.getsize(src), os.path.getsize(dst)
-            notify("Media compressed", f"{os.path.basename(dst)}\n"
+            notify("Video shrunk", f"{os.path.basename(dst)}\n"
                    f"{before / 2**20:.1f} MB → {after / 2**20:.1f} MB ({after / before:.0%})")
         else:
             if os.path.exists(dst):
                 os.remove(dst)
-            notify("Compression failed", name, "critical")
+            notify("Shrinking failed", name, "critical")
 
 
 def answer(value):
@@ -111,7 +111,7 @@ def serve():
                 answer({"op": "done"})
             elif op == "cancel":
                 break
-            elif op == "run" and request.get("action") == "compress":
+            elif op == "run" and request.get("action") == "shrink":
                 paths = request.get("paths", [])
                 if not paths or not all(isinstance(p, str) and os.path.isabs(p) for p in paths):
                     raise ValueError("Expected absolute selected file paths.")
