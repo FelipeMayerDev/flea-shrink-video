@@ -1,5 +1,9 @@
 # Flea Shrink Video
 
+[![Shrink Video demo](docs/demo.gif)](docs/demo.mp4)
+
+<sub>Click the animation for the video with sound.</sub>
+
 A [Flea](https://github.com/thisisgm/flea) plugin that adds **Shrink Video…** to the right-click
 menu of video files. Choosing it opens Omarchy's menu to pick, in order:
 
